@@ -1,0 +1,56 @@
+body {
+    background-image: url("../images/Batman-Transparant-Image.png");
+    background-repeat: no-repeat;
+    background-position: right 10px top 10px;
+    background-color: #dadada;
+}
+
+h1 {
+    margin-top: 10em;
+    margin-right: 5em;
+    float: right;
+    font-size: 150%;
+}
+
+h2 {
+    font-size: 120%;
+}
+
+.responsive {
+    max-width: 125px;
+    max-height: 125px;
+    width: auto;
+    height: auto;
+}
+
+.container {
+    margin: 1em 2em 1em 2em;
+}
+
+.line-up {
+    width: 80%;
+    min-height: 150px;
+}
+
+.char-box {
+    width: 20%;
+    max-height: 150px;
+    max-width: 150px;
+    border: 1px solid #dfdfdf;
+    border-radius: 15px;
+    margin: 0;
+    padding: 0; 
+    display: inline-block; 
+    text-align: center;
+}
+
+.button-box {
+    max-height: 150px;
+    max-width: 150px;
+    border: 1px solid #ffffff;
+    margin: 0;
+    padding: 0; 
+    display: inline;  
+    text-align: center;
+    align-content: middle;
+}
