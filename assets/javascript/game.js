@@ -3,6 +3,7 @@ var enemyLineDiv = $("#enemy-line");
 var challengerLineDiv = $("#challenger-line");
 var defenderLineDiv = $("#defender-line")
 var topLineDiv = $("#top-line")
+var resetButton = $("#bb-reset")
 
 var currentBattleInProgress = false; // If True, a battle is in progress and enemy line clicks are ignored.
 
@@ -14,7 +15,6 @@ var batmanCharacters = {
         this.batmanDefender = [];
         this.remainingBatmen = 0;
         this.loadBatmans();
-        this.remainingBatmen = this.batmansInfo.length;
     },
 
     // Takes in the name, moves that batman to batmanChallenger and pops it from the array.
@@ -47,8 +47,9 @@ var batmanCharacters = {
         this.batmansInfo = [
             { name: "West", healthPoints: 100, attackPoints: 10, counterAttackPoints: 15, imageFile: "assets/images/west.jpg", isAlive: true },
             { name: "Keaton", healthPoints: 100, attackPoints: 10, counterAttackPoints: 20, imageFile: "assets/images/Keaton.jpeg", isAlive: true },
-            { name: "Kilmer", healthPoints: 80, attackPoints: 9, counterAttackPoints: 25, imageFile: "assets/images/Kilmer.jpg", isAlive: true },
-            { name: "Bale", healthPoints: 150, attackPoints: 30, counterAttackPoints: 10, imageFile: "assets/images/Bale.jpg", isAlive: true }];
+            { name: "Kilmer", healthPoints: 80, attackPoints: 9, counterAttackPoints: 25, imageFile: "assets/images/kilmer.jpg", isAlive: true },
+            { name: "Bale", healthPoints: 150, attackPoints: 30, counterAttackPoints: 10, imageFile: "assets/images/bale.jpg", isAlive: true }];
+            this.remainingBatmen = this.batmansInfo.length;
     }
 
 }
@@ -97,6 +98,17 @@ function attack() {
     if(batmanCharacters.batmanChallenger[0].healthPoints <=0){
         $("#challenger-health").text("Dead");
         alert("Challenger Dead");
+        resetButton.show();
+    }
+    // Check to see if defender is still alive, if no more enemies remain, stop the game.
+    else if (batmanCharacters.batmanDefender[0].healthPoints <=0 && batmanCharacters.remainingBatmen ===0 ) {
+        alert("You have won");
+        currentBattleInProgress = false;
+        $("#lu-defender").hide();
+        $("#bb-attack").hide();
+        $("#challenger-health").text(batmanCharacters.batmanChallenger[0].healthPoints);
+        //Show the reset button
+        resetButton.show();
     }
     // Check to see if defender is still alive, let player select new defender if he is
     else if (batmanCharacters.batmanDefender[0].healthPoints <=0 ) {
@@ -126,6 +138,7 @@ batmanCharacters.init();
 enemyLineDiv.hide();
 challengerLineDiv.hide();
 defenderLineDiv.hide();
+resetButton.hide();
 
 initialLineupLoad();
 
@@ -160,8 +173,27 @@ $(document).ready(function () {
             }
         }),
         $("#bb-attack").on("click", function (e) {
-            attack();
-// Fight Code
-        
+            attack();       
+        })
+        $("#bb-reset").on("click", function (e) {
+            // Rehide everything on the screen
+            // Start things over.
+            topLineDiv.show();
+            $("#lu-enemyone").show();
+            $("#lu-enemytwo").show();
+            $("#lu-enemythree").show();
+            $("#lu-defender").show();
+            enemyLineDiv.hide();
+            challengerLineDiv.hide();
+            defenderLineDiv.hide();
+            resetButton.hide();
+            $("#bb-attack").show();
+            
+      //      delete batmanCharacters;
+       //     var batmanCharacters = Object.create(batmanCharacters);
+            batmanCharacters.init();
+            
+            initialLineupLoad();
+            
         })
 });
