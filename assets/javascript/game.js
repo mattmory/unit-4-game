@@ -86,6 +86,7 @@ function loadDefenderBox() {
     blockIMG.attr("alt", batmanCharacters.batmanDefender[0].name);
     blockIMG.attr("src", batmanCharacters.batmanDefender[0].imageFile);
     blockHP.text(batmanCharacters.batmanDefender[0].healthPoints);
+    $("#bb-attack").show();
 }
 
 function attack() {
@@ -97,20 +98,21 @@ function attack() {
     // Check to see if the challenger is still dead, kill the game if not.
     if(batmanCharacters.batmanChallenger[0].healthPoints <=0){
         $("#challenger-health").text("Dead");
-        alert("Challenger Dead");
+        alert("You have been defeated.. but at least George Clooney or Ben Affleck didn't win.\nSelect restart to try again!");
+        $("#bb-attack").hide();
         resetButton.show();
     }
-    // Check to see if defender is still alive, if no more enemies remain, stop the game.
+    // Check to see if challenger is still alive, if no more enemies remain, stop the game.
     else if (batmanCharacters.batmanDefender[0].healthPoints <=0 && batmanCharacters.remainingBatmen ===0 ) {
-        alert("You have won");
+        alert("You are victorious!\nSelect Restart to try again!");
         currentBattleInProgress = false;
         $("#lu-defender").hide();
-        $("#bb-attack").hide();
+        challengerLineDiv.hide();
         $("#challenger-health").text(batmanCharacters.batmanChallenger[0].healthPoints);
         //Show the reset button
         resetButton.show();
     }
-    // Check to see if defender is still alive, let player select new defender if he is
+    // Check to see if challenger is still alive, let player select new defender if he is
     else if (batmanCharacters.batmanDefender[0].healthPoints <=0 ) {
         alert("Select your next opponent.");
         currentBattleInProgress = false;
@@ -178,6 +180,10 @@ $(document).ready(function () {
         $("#bb-reset").on("click", function (e) {
             // Rehide everything on the screen
             // Start things over.
+           batmanCharacters.batmanChallenger =[];
+           batmanCharacters.batmanDefender =[];
+           batmanCharacters.batmansInfo = [];
+           currentBattleInProgress = false;
             topLineDiv.show();
             $("#lu-enemyone").show();
             $("#lu-enemytwo").show();
@@ -189,8 +195,6 @@ $(document).ready(function () {
             resetButton.hide();
             $("#bb-attack").show();
             
-      //      delete batmanCharacters;
-       //     var batmanCharacters = Object.create(batmanCharacters);
             batmanCharacters.init();
             
             initialLineupLoad();
