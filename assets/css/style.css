@@ -40,7 +40,7 @@ h1,h2,h3,h4 {
 
 .char-box {
     width: 20%;
-    max-height: 180px;
+    max-height: 220px;
     max-width: 180px;
     border: 1px solid #dfdfdf;
     border-radius: 15px;
@@ -49,6 +49,11 @@ h1,h2,h3,h4 {
     display: inline-block; 
     text-align: center;
 }
+
+.characterName, .characterHealth {
+  padding-top: 0px;
+}
+
 
 .button-box {
     max-height: 150px;

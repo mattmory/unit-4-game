@@ -59,7 +59,7 @@ function loadCharBox(batmanIndex, blockName, blockIMG, blockHP) {
     var nameBlock = $(blockName);
     var blockIMG = $(blockIMG);
     var blockHP = $(blockHP);
-    nameBlock.attr("class", "characterName")
+    nameBlock.addClass("class", "characterName")
     nameBlock.text(batmanCharacters.batmansInfo[batmanIndex].name);
     blockIMG.attr("alt", batmanCharacters.batmansInfo[batmanIndex].name);
     blockIMG.attr("src", batmanCharacters.batmansInfo[batmanIndex].imageFile);
@@ -70,7 +70,7 @@ function loadChallengerBox() {
     var nameBlock = $("#challenger-h4");
     var blockIMG = $("#challenger-image");
     var blockHP = $("#challenger-health");
-    nameBlock.attr("class", batmanCharacters.batmanChallenger[0].name);
+    nameBlock.addClass(batmanCharacters.batmanChallenger[0].name);
     nameBlock.text(batmanCharacters.batmanChallenger[0].name);
     blockIMG.attr("alt", batmanCharacters.batmanChallenger[0].name);
     blockIMG.attr("src", batmanCharacters.batmanChallenger[0].imageFile);
@@ -81,7 +81,7 @@ function loadDefenderBox() {
     var nameBlock = $("#defender-h4");
     var blockIMG = $("#defender-image");
     var blockHP = $("#defender-health");
-    nameBlock.attr("class", batmanCharacters.batmanDefender[0].name);
+    nameBlock.addClass(batmanCharacters.batmanDefender[0].name);
     nameBlock.text(batmanCharacters.batmanDefender[0].name);
     blockIMG.attr("alt", batmanCharacters.batmanDefender[0].name);
     blockIMG.attr("src", batmanCharacters.batmanDefender[0].imageFile);
@@ -109,7 +109,9 @@ function attack() {
         $("#lu-defender").hide();
         challengerLineDiv.hide();
         $("#challenger-health").text(batmanCharacters.batmanChallenger[0].healthPoints);
-        //Show the reset button
+        //Show the reset button, hide the attack.
+        $("#Opponent-H").hide();
+        $("#bb-attack").hide();
         resetButton.show();
     }
     // Check to see if challenger is still alive, let player select new defender if he is
@@ -185,6 +187,7 @@ $(document).ready(function () {
            batmanCharacters.batmansInfo = [];
            currentBattleInProgress = false;
             topLineDiv.show();
+            $("#Opponent-H").show();
             $("#lu-enemyone").show();
             $("#lu-enemytwo").show();
             $("#lu-enemythree").show();
