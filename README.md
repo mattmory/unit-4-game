@@ -3,9 +3,9 @@ Four batmen vie to be number one.
 
 # Links:
 ### Application:
-    https://young-ocean-27543.herokuapp.com/
+    https://mattmory.github.io/unit-4-game/
 ### Github: 
-    https://github.com/mattmory/burger
+    https://github.com/mattmory/unit-4-game
 
 # Tech
 ##### Batman vs. Batman uses some open source projects to work properly:
